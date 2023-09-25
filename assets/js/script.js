@@ -50,3 +50,20 @@ window.addEventListener("scroll", function () {
   window.scrollY >= 500 ? goTopBtn.classList.add("active") : goTopBtn.classList.remove("active");
 
 });
+
+const data = null;
+
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener('readystatechange', function () {
+	if (this.readyState === this.DONE) {
+		console.log(this.responseText);
+	}
+});
+
+xhr.open('GET', 'https://streaming-availability.p.rapidapi.com/services');
+xhr.setRequestHeader('X-RapidAPI-Key', 'de28ee6d75mshcec5d8500ff3419p14e689jsn759429b6c56b');
+xhr.setRequestHeader('X-RapidAPI-Host', 'streaming-availability.p.rapidapi.com');
+
+xhr.send(data);
