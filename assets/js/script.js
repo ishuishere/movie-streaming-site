@@ -53,17 +53,20 @@ window.addEventListener("scroll", function () {
 
 const data = null;
 
-const xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
+import axios from 'axios';
 
-xhr.addEventListener('readystatechange', function () {
-	if (this.readyState === this.DONE) {
-		console.log(this.responseText);
-	}
-});
+const options = {
+  method: 'GET',
+  url: 'https://streaming-availability.p.rapidapi.com/services',
+  headers: {
+    'X-RapidAPI-Key': 'de28ee6d75mshcec5d8500ff3419p14e689jsn759429b6c56b',
+    'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+  }
+};
 
-xhr.open('GET', 'https://streaming-availability.p.rapidapi.com/services');
-xhr.setRequestHeader('X-RapidAPI-Key', 'de28ee6d75mshcec5d8500ff3419p14e689jsn759429b6c56b');
-xhr.setRequestHeader('X-RapidAPI-Host', 'streaming-availability.p.rapidapi.com');
-
-xhr.send(data);
+try {
+	const response = await axios.request(options);
+	console.log(response.data);
+} catch (error) {
+	console.error(error);
+}
